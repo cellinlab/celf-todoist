@@ -1,0 +1,17 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.sidebar {
+  position: fixed;
+  width: 266px;
+  height: calc(100vh);
+  background-color: #fafafa;
+  border-right: $generic-border;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  @include no-select();
+  .sidebar-generic {
+  }
+  .sidebar-projects {
+  }
+}

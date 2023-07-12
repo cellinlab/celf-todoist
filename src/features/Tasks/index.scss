@@ -1,0 +1,9 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.tasks {
+  width: 656px;
+  min-height: calc(100vh);
+  background-color: white;
+  border-right: $generic-border;
+}

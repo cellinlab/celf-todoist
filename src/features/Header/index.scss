@@ -1,0 +1,73 @@
+@import "@/styles/variables.scss";
+@import "@/styles/mixins.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 400;
+  height: 44px;
+  width: 100%;
+  background-color: $generic-bg;
+  border-bottom: solid 1px #ca2100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: height 0.2s ease-in;
+  nav {
+    margin: auto;
+    height: 44px;
+    max-width: 922px;
+    display: flex;
+    align-items: center;
+    p,
+    li {
+      color: white;
+    }
+    .logo {
+      width: 100px;
+      img {
+        width: 24px;
+      }
+    }
+    .settings {
+      flex: 1;
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        li {
+          list-style: none;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            border-radius: 3px;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          &.settings-add {
+            margin-right: 15px;
+            button {
+              font-size: 30px;
+              color: white;
+              @include transparent-button();
+              cursor: pointer;
+            }
+          }
+          &.settings-darkmode {
+            button {
+              color: white;
+              @include transparent-button();
+              cursor: pointer;
+              display: flex;
+              svg {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
