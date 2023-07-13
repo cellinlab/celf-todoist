@@ -1,7 +1,7 @@
 @import "@/styles/variables.scss";
 @import "@/styles/mixins.scss";
 
-.header {
+.app-header {
   position: fixed;
   top: 0;
   z-index: 400;
@@ -69,5 +69,13 @@
         }
       }
     }
+  }
+}
+
+.dark-mode {
+  .app-header {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    background-color: #282828;
+    border-color: transparent;
   }
 }
