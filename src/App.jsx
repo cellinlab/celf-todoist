@@ -5,7 +5,7 @@ import Header from "@/features/Header";
 import Sidebar from "@/features/Sidebar";
 import Tasks from "@/features/Tasks";
 
-import { fetchProjects } from "@/stores/projects/actionCreator";
+import { fetchProjects, fetchTasks } from "@/stores/projects/actionCreator";
 
 import "./App.scss";
 
@@ -14,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchProjects());
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   const { theme } = useSelector((state) => state.theme);

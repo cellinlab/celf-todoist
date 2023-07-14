@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import db from './db';
 
 const formatRes = (res, error) => {
@@ -28,11 +30,74 @@ export const addTask = async (task) => {
   });
 }
 
-export const getTasks = async () => {
+export const getTasksByProject = async (projectId) => {
   return new Promise((resolve, reject) => {
-    db.tasks.toArray()
+    db.tasks.where('projectId').equals(projectId).toArray()
       .then((tasks) => {
         resolve(formatRes(tasks));
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const getTaskInbox = async () => {
+  return new Promise((resolve, reject) => {
+    db.tasks.where('date').equals('').toArray()
+      .then((tasks) => {
+        resolve(formatRes(tasks));
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const getTasksByDate = async (date) => {
+  return new Promise((resolve, reject) => {
+    db.tasks.where('date').equals(date).toArray()
+      .then((tasks) => {
+        resolve(formatRes(tasks));
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const getTasksNext7Days = async () => {
+  return new Promise((resolve, reject) => {
+    const today = moment().format('DD/MM/YYYY');
+    const next7Days = moment().add(7, 'days').format('DD/MM/YYYY');
+
+    db.tasks.where('date').between(today, next7Days, { includeLower: true, includeUpper: true }).toArray()
+      .then((tasks) => {
+        resolve(formatRes(tasks));
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const deleteTask = async (id) => {
+  return new Promise((resolve, reject) => {
+    db.tasks.delete(id)
+      .then(() => {
+        resolve(formatRes());
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const updateTask = async (id, task) => {
+  return new Promise((resolve, reject) => {
+    db.tasks.update(id, task)
+      .then(() => {
+        resolve(formatRes());
       })
       .catch((error) => {
         reject(formatRes(null, error));

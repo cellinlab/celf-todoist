@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa";
 
-import TaskDate from "./TaskDate";
-import ProjectOverlay from "./ProjectOverlay";
+import TaskDate from "./components/TaskDate";
+import ProjectOverlay from "./components/ProjectOverlay";
 import { addTask } from "@/api";
+import { fetchTasks } from "@/stores/projects/actionCreator";
 
 import "./index.scss";
 
 const AddTask = (props) => {
-  const { showAddTaskMain, shouldShowMain, showQuickAddTask } = props;
+  const { showAddTaskMain = true, shouldShowMain = false, showQuickAddTask } = props;
   const { setShowQuickAddTask } = props;
 
   const [task, setTask] = useState("");
@@ -22,6 +23,8 @@ const AddTask = (props) => {
   const [showTaskDate, setShowTaskDate] = useState(false);
 
   const { selectedProject } = useSelector((state) => state.projects);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTask("");
@@ -56,6 +59,8 @@ const AddTask = (props) => {
       setProject("");
       setShowMain(false);
       setShowProjectOverlay(false);
+
+      dispatch(fetchTasks(projectId));
     }
   };
 
@@ -193,15 +198,10 @@ const AddTask = (props) => {
 };
 
 AddTask.propTypes = {
-  showAddTaskMain: PropTypes.bool.isRequired,
-  shouldShowMain: PropTypes.bool.isRequired,
-  showQuickAddTask: PropTypes.bool.isRequired,
-  setShowQuickAddTask: PropTypes.func.isRequired,
-};
-
-AddTask.defaultProps = {
-  showQuickAddTask: true,
-  showAddTaskMain: false,
+  showAddTaskMain: PropTypes.bool,
+  shouldShowMain: PropTypes.bool,
+  showQuickAddTask: PropTypes.bool,
+  setShowQuickAddTask: PropTypes.func,
 };
 
 export default AddTask;

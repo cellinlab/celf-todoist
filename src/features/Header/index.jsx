@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPizzaSlice } from "react-icons/fa";
 
-import AddTask from "../AddTask/components";
+import AddTask from "../AddTask";
 import { toggleTheme } from "@/stores/theme/reducer";
 
 import "./index.scss";

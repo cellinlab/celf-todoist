@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchProjects } from "./actionCreator";
+import { fetchProjects, fetchTasks } from "./actionCreator";
 
 const initialState = {
   projects: [],
   selectedProject: 'INBOX',
+  tasks: [],
 };
 
 const projectsSlice = createSlice({
@@ -19,9 +20,13 @@ const projectsSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProjects.fulfilled, (state, action) => {
-      state.projects = action.payload;
-    });
+    builder
+      .addCase(fetchProjects.fulfilled, (state, action) => {
+        state.projects = action.payload;
+      })
+      .addCase(fetchTasks.fulfilled, (state, action) => {
+        state.tasks = action.payload;
+      });
   }
 });
 
