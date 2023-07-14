@@ -73,3 +73,14 @@
     @content;
   }
 }
+
+@mixin va($va-align: center) {
+  display: flex;
+  align-items: center;
+
+  @if $va-align != center {
+    justify-content: left;
+  } @else {
+    justify-content: center;
+  }
+}

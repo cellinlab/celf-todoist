@@ -1,4 +1,11 @@
-.app-content {
-  margin: auto;
-  max-width: 922px;
+.app-page {
+  height: 100vh;
+  .app-content {
+    margin: auto;
+    margin-top: 45px;
+    height: calc(100vh - 45px);
+    width: 100%;
+    max-width: 922px;
+    display: flex;
+  }
 }

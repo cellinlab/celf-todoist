@@ -2,8 +2,8 @@
 @import "@/styles/mixins.scss";
 
 .tasks {
-  width: 656px;
-  min-height: calc(100vh);
+  flex: 1;
+  min-height: calc(100vh - 45px);
   background-color: white;
   border-right: $generic-border;
 }

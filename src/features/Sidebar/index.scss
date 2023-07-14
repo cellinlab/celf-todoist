@@ -1,8 +1,7 @@
 @import "@/styles/variables.scss";
 @import "@/styles/mixins.scss";
 
-.sidebar {
-  position: fixed;
+.app-sidebar {
   width: 266px;
   height: calc(100vh);
   background-color: #fafafa;
@@ -10,8 +9,139 @@
   overflow-x: hidden;
   overflow-y: hidden;
   @include no-select();
-  .sidebar-generic {
+  @include mq("900px") {
+    display: none;
   }
+  li {
+    &:hover .sidebar-project-delete {
+      display: flex;
+    }
+  }
+  .sidebar-project {
+    cursor: pointer;
+
+    div:nth-child(1) {
+      padding: 5px 0;
+      padding-left: 10px;
+      padding-right: 15px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    &-delete {
+      margin-left: auto;
+      display: none;
+
+      svg {
+        color: #cacaca;
+      }
+    }
+
+    &.active,
+    &:hover {
+      font-weight: bold;
+      background-color: white;
+    }
+
+    &:nth-child(1) {
+      .sidebar-dot {
+        color: #6accbc;
+      }
+    }
+    &:nth-child(2) {
+      .sidebar-dot {
+        color: #fad003;
+      }
+    }
+    &:nth-child(3) {
+      .sidebar-dot {
+        color: #ff8d85;
+      }
+    }
+    &:nth-child(4) {
+      .sidebar-dot {
+        color: #ff9932;
+      }
+    }
+    &:nth-child(5) {
+      .sidebar-dot {
+        color: #af38eb;
+      }
+    }
+  }
+
   .sidebar-projects {
+    padding-left: 3px;
+  }
+
+  .sidebar-project {
+    @include va("left");
+  }
+
+  .sidebar-dot {
+    margin-right: 10px;
+    font-size: 30px;
+  }
+  .sidebar-middle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    border-bottom: $generic-border;
+    padding-left: 10px;
+    cursor: pointer;
+
+    span {
+      color: #0000008a;
+      margin-right: 10px;
+
+      svg.hidden-projects {
+        transform: rotate(-90deg);
+      }
+    }
+
+    h2 {
+      margin: 0;
+      color: #333;
+      font-size: 15px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+  }
+  .sidebar-generic {
+    li {
+      list-style-type: none;
+      color: #333;
+      display: flex;
+      cursor: pointer;
+      line-height: 1.5;
+      font-size: 15px;
+      padding-left: 0;
+      padding-right: 0;
+
+      div:nth-child(1) {
+        display: flex;
+        padding: 10px 0 10px 10px;
+        width: 100%;
+
+        span:first-of-type {
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+
+          svg {
+            width: 18px;
+            height: 18px;
+            color: #555;
+          }
+        }
+      }
+
+      &.active,
+      &:hover {
+        font-weight: bold;
+        background-color: white;
+      }
+    }
   }
 }

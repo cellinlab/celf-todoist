@@ -39,3 +39,39 @@ export const getTasks = async () => {
       });
   });
 }
+
+export const addProject = async (project) => {
+  return new Promise((resolve, reject) => {
+    db.projects.add(project)
+      .then(() => {
+        resolve(formatRes());
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const getProjects = async () => {
+  return new Promise((resolve, reject) => {
+    db.projects.toArray()
+      .then((projects) => {
+        resolve(formatRes(projects));
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
+
+export const deleteProject = async (id) => {
+  return new Promise((resolve, reject) => {
+    db.projects.delete(id)
+      .then(() => {
+        resolve(formatRes());
+      })
+      .catch((error) => {
+        reject(formatRes(null, error));
+      });
+  });
+}
