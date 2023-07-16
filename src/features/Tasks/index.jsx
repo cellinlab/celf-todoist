@@ -35,8 +35,15 @@ const Tasks = () => {
       <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id} className="task-list-item">
-            <Checkbox id={task.id} task={task.task} />
-            <span>{task.task}</span>
+            <Checkbox
+              id={task.id}
+              task={task.task}
+              isArchived={task.archived}
+              onUpdate={() => {
+                dispatch(fetchTasks(selectedProject));
+              }}
+            />
+            <span className={`${task.archived ? "completed" : ""}`}>{task.task}</span>
           </li>
         ))}
       </ul>

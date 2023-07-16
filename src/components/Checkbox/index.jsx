@@ -4,9 +4,12 @@ import { updateTask } from "@/api";
 
 import "./index.scss";
 
-const Checkbox = ({ id, task }) => {
-  const archiveTask = () => {
-    updateTask(id, { archived: true });
+const Checkbox = (props) => {
+  const { id, task, isArchived } = props;
+  const { onUpdate } = props;
+  const archiveTask = async () => {
+    await updateTask(id, { archived: !isArchived });
+    onUpdate();
   };
 
   return (
@@ -20,7 +23,7 @@ const Checkbox = ({ id, task }) => {
         if (e.key === "Enter") archiveTask();
       }}
     >
-      <span className="checkbox" />
+      <span className={`checkbox ${isArchived ? "is-completed" : ""}`} />
     </div>
   );
 };

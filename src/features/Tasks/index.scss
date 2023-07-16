@@ -38,5 +38,9 @@
     font-size: 14px;
     list-style-type: none;
     border-bottom: 1px solid #f0f0f0;
+    .completed {
+      text-decoration: line-through;
+      color: #999;
+    }
   }
 }
